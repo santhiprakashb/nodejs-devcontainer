@@ -26,7 +26,6 @@
       "CURSOR_SERVER_PATH": "/home/node/.cursor-server"
     },
     "mounts": [
-      "source=${localWorkspaceFolder},target=/app,type=bind",
       "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind"
     ],
     "features": {
@@ -40,5 +39,3 @@
     "initializeCommand": "mkdir -p ${localEnv:HOME}/.cursor-server",
     "runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"]
   }
-  
-  
