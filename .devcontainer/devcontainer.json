@@ -1,0 +1,44 @@
+{
+    "name": "Node.js Dev Container",
+    "dockerFile": "Dockerfile",
+    "workspaceFolder": "/app",
+    "remoteUser": "node",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "esbenp.prettier-vscode"
+        ],
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "bash",
+          "terminal.integrated.profiles.linux": {
+            "bash": {
+              "path": "/bin/bash"
+            }
+          }
+        }
+      }
+    },
+    "forwardPorts": [3000],
+    "postCreateCommand": "npm install",
+    "remoteEnv": {
+      "DISPLAY": ":0",
+      "CURSOR_SERVER_PATH": "/home/node/.cursor-server"
+    },
+    "mounts": [
+      "source=${localWorkspaceFolder},target=/app,type=bind",
+      "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind"
+    ],
+    "features": {
+      "ghcr.io/devcontainers/features/common-utils:2": {
+        "installZsh": true,
+        "configureZshAsDefaultShell": true,
+        "installOhMyZsh": true,
+        "upgradePackages": true
+      }
+    },
+    "initializeCommand": "mkdir -p ${localEnv:HOME}/.cursor-server",
+    "runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"]
+  }
+  
+  
